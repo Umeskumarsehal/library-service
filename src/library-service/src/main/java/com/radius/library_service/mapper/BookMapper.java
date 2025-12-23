@@ -25,7 +25,6 @@ public class BookMapper extends GenericEntityVoMapper<BookEntity, Book> {
     @Override
     protected List<Consumer<BookEntity>> getVoToEntityMappers(Book vo) {
         return List.of(
-                entity -> entity.setId(vo.getId()),
                 entity -> entity.setTitle(vo.getTitle()),
                 entity -> entity.setAuthor(vo.getAuthor()),
                 entity -> entity.setIsbn(vo.getIsbn()),
