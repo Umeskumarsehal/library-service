@@ -31,6 +31,14 @@ public class BookService {
         throw new BookNotFoundException("Book Not found with Id: "+id);
     }
 
+    public List<Book> getBookByTitle(String title) {
+        Optional<List<BookEntity>> books = bookRepository.findByTitle(title);
+        if(books.isPresent()){
+            return bookMapper.mapToVoList(books.get());
+        }
+        throw new BookNotFoundException("Book Not found with Title: "+title);
+    }
+
     public Book createBook(Book bookVo) {
         BookEntity entity = bookMapper.mapToEntity(bookVo);
         BookEntity saved = bookRepository.save(entity);

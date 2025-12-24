@@ -33,6 +33,16 @@ public class BookController {
         return ResponseEntity.ok(book);
     }
 
+    @Operation(summary = "Get book List by Title")
+    @GetMapping("/getByTitle/{title}")
+    public ResponseEntity<List<Book>> getBookByTitle(@PathVariable String title) {
+        List<Book> books = bookService.getBookByTitle(title);
+        if(books == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(books);
+    }
+
     @Operation(summary = "Create a new book")
     @PostMapping
     public ResponseEntity<Book> createBook(@RequestBody Book book) {
